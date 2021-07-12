@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/_game-music-alien.wav-2777cbcd149a5694b83bd9e374664ee0.sample"
+
+[deps]
+
+source_file="res://music/_game-music-alien.wav"
+dest_files=[ "res://.import/_game-music-alien.wav-2777cbcd149a5694b83bd9e374664ee0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

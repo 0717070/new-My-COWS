@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://rainyhearts.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Images/background pixel .1.jpg" type="Texture" id=2]
+[ext_resource path="res://PressStart2P-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://LoseScreen/LoseScreen.gd" type="Script" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 5 )
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+margin_right = 1281.0
+margin_bottom = 705.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+margin_right = 1281.0
+margin_bottom = 705.0
+
+[node name="HUD" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -321.0
+margin_top = 116.0
+margin_right = 321.0
+margin_bottom = 167.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="HUD"]
+margin_right = 642.0
+margin_bottom = 44.0
+custom_fonts/font = SubResource( 2 )
+text = "Return To Menu"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 639, 347 )
+scale = Vector2( 1.83, 1.25528 )
+texture = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -102.0
+margin_right = 250.0
+margin_bottom = -52.0
+custom_fonts/font = SubResource( 3 )
+text = "YOU LOSE :("
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="HUD/Button" to="." method="_on_Button_pressed"]

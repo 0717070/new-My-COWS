@@ -1,0 +1,180 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://ButtonsScript.gd" type="Script" id=1]
+[ext_resource path="res://MainGame.gd" type="Script" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=5]
+[ext_resource path="res://Enemy/Enemies.gd" type="Script" id=6]
+[ext_resource path="res://Images/background pixel .1.jpg" type="Texture" id=7]
+[ext_resource path="res://music/night-in-the-field.wav" type="AudioStream" id=8]
+[ext_resource path="res://music/_game-music-alien.wav" type="AudioStream" id=9]
+[ext_resource path="res://rainyhearts.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://cows.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Minecraft.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://cows.gd" type="Script" id=13]
+[ext_resource path="res://cow.gd" type="Script" id=14]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 657.433, 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 367.237 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = ExtResource( 12 )
+
+[node name="MainGame" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.33792
+margin_top = 5.03183
+margin_right = 3.33789
+margin_bottom = 5.03186
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="VBoxContainer" parent="."]
+margin_left = 33.8299
+margin_top = 19.9809
+margin_right = 181.83
+margin_bottom = 59.9809
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReturnMainMenuButton" type="Button" parent="HUD"]
+margin_right = 148.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 1 )
+text = "Return To Main Menu"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+scene_to_load = "res://Title Screen/Title screen.tscn"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="border_top" type="KinematicBody2D" parent="." groups=[
+"top",
+]]
+position = Vector2( 639.168, 0.719391 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_top"]
+position = Vector2( 1.49829, 2.99664 )
+shape = SubResource( 2 )
+
+[node name="border_bottom" type="KinematicBody2D" parent="." groups=[
+"bottom",
+]]
+position = Vector2( 628.662, 0.96817 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_bottom"]
+position = Vector2( 10.0001, 709 )
+shape = SubResource( 2 )
+
+[node name="border_right" type="Area2D" parent="." groups=[
+"right",
+]]
+position = Vector2( -1.33792, 344.968 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_right"]
+position = Vector2( 1286.19, 0 )
+shape = SubResource( 3 )
+
+[node name="border_left" type="Area2D" parent="." groups=[
+"left",
+]]
+position = Vector2( -4.33792, 342.968 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="border_left"]
+shape = SubResource( 3 )
+
+[node name="Player" parent="." instance=ExtResource( 3 )]
+speed = 400
+
+[node name="cows" type="Node2D" parent="."]
+position = Vector2( -4.33792, -4.03183 )
+script = ExtResource( 13 )
+
+[node name="cow" parent="cows" groups=[
+"cows",
+] instance=ExtResource( 11 )]
+scale = Vector2( 0.981936, 0.97122 )
+script = ExtResource( 14 )
+
+[node name="cow2" parent="cows" groups=[
+"cows",
+] instance=ExtResource( 11 )]
+position = Vector2( -691, 0 )
+scale = Vector2( 0.981936, 0.97122 )
+script = ExtResource( 14 )
+
+[node name="Enemies" type="Node2D" parent="."]
+script = ExtResource( 6 )
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 146.662, 108.968 )
+script = ExtResource( 5 )
+
+[node name="Enemy2" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 409.662, 105.968 )
+script = ExtResource( 5 )
+
+[node name="Enemy3" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 716.662, 108.968 )
+script = ExtResource( 5 )
+
+[node name="Enemy4" parent="Enemies" instance=ExtResource( 4 )]
+position = Vector2( 1038.66, 114.968 )
+script = ExtResource( 5 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_enable = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 641.5, 353.5 )
+scale = Vector2( 1.83857, 1.26585 )
+texture = ExtResource( 7 )
+
+[node name="NightSounds" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -3.33792, -5.03183 )
+stream = ExtResource( 8 )
+volume_db = 1.0
+autoplay = true
+
+[node name="AlienSounds" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -15.0
+autoplay = true
+area_mask = 2147483649
+
+[node name="score" type="Label" parent="."]
+show_behind_parent = true
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -12.3379
+margin_top = -0.0318298
+margin_right = 70.6621
+margin_bottom = 30.9682
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "score"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreTimer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
